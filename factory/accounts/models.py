@@ -34,8 +34,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(BaseUser, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = 'user profile'
-        verbose_name_plural = 'profiles users'
+        verbose_name = 'profile'
+        verbose_name_plural = 'profiles'
 
     def __str__(self):
         return f'{self.user.username}'
