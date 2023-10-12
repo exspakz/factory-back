@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from djoser.views import UserViewSet
 
-from accounts.models import UserProfile
+from accounts.models import TelegramData
 from .mixins import ActivationMixin, PasswordMixin, UsernameMixin
 from .serializers import TelegramChatIdSerializer
 
@@ -18,11 +18,11 @@ class CustomUserViewSet(ActivationMixin, PasswordMixin, UsernameMixin, UserViewS
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def generate_telegram_token(request):
-    user_profile = request.user.userprofile
-    token = default_token_generator.make_token(user_profile.user)
+    user_telegram = request.user.telegram
+    token = default_token_generator.make_token(user_telegram.user)
 
-    user_profile.telegram_token = token
-    user_profile.save()
+    user_telegram.token = token
+    user_telegram.save()
 
     return Response({'telegram_token': token}, status=200)
 
@@ -38,9 +38,9 @@ def save_telegram_chat_id(request):
     chat_id = serializer.validated_data['chat_id']
 
     try:
-        user_profile = UserProfile.objects.get(telegram_token=token)
-        user_profile.telegram_chat_id = chat_id
-        user_profile.save()
+        user_telegram = TelegramData.objects.get(token=token)
+        user_telegram.chat_id = chat_id
+        user_telegram.save()
         return Response({'detail': 'Chat ID saved successfully.'}, status=200)
-    except UserProfile.DoesNotExist:
+    except TelegramData.DoesNotExist:
         return Response({'detail': 'Invalid token.'}, status=400)

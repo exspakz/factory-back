@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from djoser.serializers import UserCreatePasswordRetypeSerializer
 
-from accounts.models import UserProfile
+from accounts.models import TelegramData
 
 
 class CustomUserCreateSerializer(UserCreatePasswordRetypeSerializer):
     def create(self, validated_data):
         user = super().create(validated_data)
-        UserProfile.objects.create(user=user)
+        TelegramData.objects.create(user=user)
         return user
 
 

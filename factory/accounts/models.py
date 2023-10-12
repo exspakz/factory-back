@@ -23,19 +23,21 @@ class ProxyBaseUser(BaseUser):
         verbose_name_plural = 'users'
 
 
-class UserProfile(models.Model):
-    telegram_chat_id = models.CharField(
+class TelegramData(models.Model):
+    chat_id = models.CharField(
         'telegram chat id', max_length=255, blank=True, null=True
     )
-    telegram_token = models.CharField(
+    token = models.CharField(
         'telegram token', max_length=255, unique=True, blank=True, null=True
     )
 
-    user = models.OneToOneField(BaseUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        BaseUser, on_delete=models.CASCADE, related_name='telegram'
+    )
 
     class Meta:
-        verbose_name = 'profile'
-        verbose_name_plural = 'profiles'
+        verbose_name = 'telegram'
+        verbose_name_plural = 'telegram'
 
     def __str__(self):
         return f'{self.user.username}'
