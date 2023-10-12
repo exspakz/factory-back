@@ -1,0 +1,16 @@
+/venv/
+/.idea/
+.env
+factory/db.sqlite3
+
+factory/accounts/migrations/*
+!factory/accounts/migrations/__init__.py
+factory/chat/migrations/*
+!factory/chat/migrations/__init__.py
+
+factory/factory/__pycache__/
+factory/accounts/__pycache__/
+factory/chat/__pycache__/
+
+factory/accounts/api/__pycache__/
+factory/chat/api/__pycache__/
