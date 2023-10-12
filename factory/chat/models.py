@@ -13,4 +13,10 @@ class Message(models.Model):
         verbose_name='user',
     )
 
+    class Meta:
+        verbose_name = 'message'
+        verbose_name_plural = 'messages'
+
+    def __str__(self):
+        return f'{self.text[:20]}...'
 
