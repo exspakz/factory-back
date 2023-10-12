@@ -12,7 +12,7 @@ class BaseUser(AbstractUser):
         verbose_name_plural = 'users'
 
     def __str__(self):
-        return f'{self._meta.verbose_name}: {self.username}'
+        return f'{self.username}'
 
 
 class ProxyBaseUser(BaseUser):
