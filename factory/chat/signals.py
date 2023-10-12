@@ -11,4 +11,4 @@ def message_created(sender, instance, created, **kwargs):
         user = instance.user
         if chat_id := user.telegram.chat_id:
             text = f'{user.first_name.capitalize()}, я получил от тебя сообщение:\n"{instance.text}"'
-            send_telegram_message(chat_id, text)
+            send_telegram_message.delay(chat_id, text)
