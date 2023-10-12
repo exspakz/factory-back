@@ -3,6 +3,8 @@ from django.db import models
 
 
 class BaseUser(AbstractUser):
+    first_name = models.CharField('first name', max_length=150)
+
     REQUIRED_FIELDS = ['first_name']
 
     class Meta:
@@ -11,6 +13,14 @@ class BaseUser(AbstractUser):
 
     def __str__(self):
         return f'{self._meta.verbose_name}: {self.username}'
+
+
+class ProxyBaseUser(BaseUser):
+    class Meta:
+        proxy = True
+        app_label = 'auth'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
 
 class UserProfile(models.Model):
