@@ -1,0 +1,38 @@
+version: '3.9'
+
+volumes:
+   redis: {}
+
+services:
+  back:
+    image: registry.gitlab.com/exspa/factory-back:back
+    container_name: factory-back
+    restart: no
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - CELERY_ENDPOINT=redis://default:pass@redis:6379
+      - ALLOWED_HOSTS='*'
+    ports:
+      - 8100:8000
+
+  bot:
+    image: registry.gitlab.com/exspa/factory-back:bot
+    container_name: factory-bot
+    restart: no
+    environment:
+      - TOKEN=${TELEGRAM_TOKEN}
+      - DOMAIN=back
+    ports:
+      - 8101:8000
+
+  redis:
+    image: redis:7.2.1-alpine
+    container_name: factory-redis
+    restart: no
+    environment:
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=pass
+    ports:
+      - 6479:6379
+    volumes:
+      - redis:/bitnami/redis/data
