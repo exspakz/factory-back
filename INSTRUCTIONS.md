@@ -39,7 +39,7 @@
     - Откройте и подключитесь к боту в Telegram по ссылке `@factory_v1_bot`
     - Отправьте боту скопированный токен, если все сделано правильно в ответ вы получите сообщение:
       ```
-      Token is successfully linked with this cha
+      Token is successfully linked with this chat.
       ```
 
       Теперь ваш чат связан с API и при отправке сообщений через API они будут дублироваться вам Telegram-ботом..
