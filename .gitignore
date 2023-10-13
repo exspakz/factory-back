@@ -14,3 +14,6 @@ factory/chat/__pycache__/
 
 factory/accounts/api/__pycache__/
 factory/chat/api/__pycache__/
+
+factory/static/*
+!factory/static/.gitkeep

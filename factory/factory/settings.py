@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    'corsheaders',
     'drf_yasg',
     'djoser',
 
@@ -122,12 +123,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = env.str('STATIC_URL', default='static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Security
+
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[])
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', default=True)
+CORS_ALLOW_ALL_ORIGINS = env.bool('CORS_ALLOW_ALL_ORIGINS', default=True)
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', default=True)
 
 
 # Common django settings
