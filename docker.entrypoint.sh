@@ -6,7 +6,7 @@ main () {
   export SECRET_KEY=$(tr -dc 'a-z0-9' < /dev/urandom | head -c50);
   python manage.py makemigrations &&
   python manage.py migrate &&
-  celery -A factory worker -l INFO &&
+  celery -A factory worker -l INFO &
   gunicorn "$@" factory.wsgi:application
 	
 }
