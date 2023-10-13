@@ -85,7 +85,7 @@ sudo apt-get install redis
 CELERY_ENDPOINT='redis://default:****@redis-11111.22.us-west-1-1.ec1.cloud.example.com:11111'
 ```
 
-#### Создайте и примените миграции из каталога проекта */newspaper/*:
+#### Создайте и примените миграции из каталога проекта `/factory/`:
 ```bash
 python manage.py makemigrations 
 python manage.py migrate 
