@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .swagger import schema_view
+from .api_docs_config import schema_view
 
 
 urlpatterns = [
